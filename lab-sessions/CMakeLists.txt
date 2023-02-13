@@ -1,0 +1,3 @@
+add_executable(lab1 lab_1.cpp)
+add_executable(lab2 lab_2.cpp)
+add_executable(lab3 lab_3.cpp)
