@@ -1,38 +1,39 @@
 // rewrite the quiz class template described in the slides.
+#include <any>
 #include <iostream>
 #include <string>
 #include <vector>
 
-template <typename OptionType>
 class QuestionOption {
-    OptionType option;
+    std::any option;
     bool is_correct;
 
    public:
-    QuestionOption<OptionType>(OptionType answer, bool is_option_correct)
-        : option(answer), is_correct(is_option_correct) {}
+    QuestionOption(void* answer, bool is_correct_option)
+        : option(answer), is_correct(is_correct_option) {}
 
-    OptionType get_option() { return option; }
+    std::any get_option() { return option; }
 };
 
-template <typename T>
 class Question {
     std::string question_statement;
-    std::vector<QuestionOption<T>> options;
+    std::vector<QuestionOption> options;
 
    public:
     Question(std::string question) : question_statement(question){};
-    void add_option(QuestionOption<T> &opt) { options.push_back(opt); }
+    void create_option(std::string new_option, bool is_correct_option) {
+        QuestionOption opt(&new_option, is_correct_option);
+        options.push_back(opt);
+    }
     std::string get_question_statement() { return question_statement; }
-    std::vector<QuestionOption<T>> get_options() { return options; }
+    std::vector<QuestionOption> get_options() { return options; }
 };
 
-template <typename T>
 class MakeQuiz {
-    std::vector<Question<T>> questions;
+    std::vector<Question> questions;
 
    public:
-    void add_question(Question<T> &quest) { questions.push_back(quest); }
+    void add_question(Question& quest) { questions.push_back(quest); }
     void show_questions() {
         for (auto question : questions) {
             std::cout << question.get_question_statement() << "\n";
@@ -47,18 +48,10 @@ class MakeQuiz {
 // meantime.
 
 int main() {
-    Question<std::string> question1("What is the answer for the Question?");
-    QuestionOption<std::string> first("Bananas", true);
-    QuestionOption<std::string> second("1234", false);
-    QuestionOption<std::string> third("2", false);
-    QuestionOption<std::string> fourth("Coconut", false);
+    Question question1("What is the answer for the Question?");
+    question1.create_option("std::string new_option", false);
 
-    question1.add_option(first);
-    question1.add_option(second);
-    question1.add_option(third);
-    question1.add_option(fourth);
-
-    MakeQuiz<std::string> quiz1;
+    MakeQuiz quiz1;
     quiz1.add_question(question1);
     quiz1.show_questions();
 
