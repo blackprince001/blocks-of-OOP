@@ -1,6 +1,4 @@
 // rewrite the quiz class template described in the slides.
-#include <any>
-#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <variant>
