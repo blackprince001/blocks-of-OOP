@@ -17,7 +17,9 @@ struct Distance {
     Distance(double x, double y) : x(x), y(y) {}
 };
 
-Distance NullDistance;
+Distance NullDistance;  // Reference objects are made global so that you can
+                        // perform function pointers with them
+// as seen in line 40
 
 Distance add_distances(Distance &pos_1, Distance &pos_2) {
     Distance ref;
