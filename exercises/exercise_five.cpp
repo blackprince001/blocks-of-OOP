@@ -10,15 +10,11 @@ class TollBooth {
     TollBooth() : number_of_cars(0), amount_collected(0) {}
 
     void payingCar() {
-        std::cout << "\nAdding Payment.\n";
         number_of_cars += 1;
         amount_collected += 0.50;
     }
 
-    void nonPayingCar() {
-        std::cout << "\nNo Payments made. Skipping Process!\n";
-        number_of_cars += 1;
-    }
+    void nonPayingCar() { number_of_cars += 1; }
 
     const void displayActivity() {
         std::cout << "Number of Cars Passed: " << number_of_cars
@@ -34,6 +30,7 @@ void test_tollbooth(TollBooth &incomingCar) {
 
     if (res == 'p' || res == 'p') {
         incomingCar.payingCar();
+        std::cout << "\nAdding Payment.\n";
 
     } else if (res == 27) {  // ord for Esc is 27
         incomingCar.displayActivity();
@@ -43,6 +40,7 @@ void test_tollbooth(TollBooth &incomingCar) {
 
     } else if (res == 'N' || res == 'n') {
         incomingCar.nonPayingCar();
+        std::cout << "\nNo Payments made. Skipping Process!\n";
 
     } else {
         std::cout << "Command Entered not Known\n";
