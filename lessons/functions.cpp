@@ -49,6 +49,13 @@ Distance dont_change_cordinates(
         &ref);  // the function literally becomes a read only function
 // no modification of the Distance object referenced
 
+int operation(int x, int y, int (*Callable)(int, int)) {
+    // pointer functions as arguments
+    return Callable(x, y);
+}
+
+int addition(int a, int b) { return a + b; }
+
 int main() {
     // pass by value
     replchar('*', 45);
@@ -83,6 +90,9 @@ int main() {
     // this also means we can alter the values of NullDistance when we move it
     // to the lHS. `reset_distance = some distance object with valid values;`
     std::cout << "Resultant: " << magnitude_from_origin(kyei_location);
+
+    int res = operation(12, 45, addition);
+    std::cout << res;
 
     return 0;
 }
