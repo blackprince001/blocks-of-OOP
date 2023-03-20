@@ -28,4 +28,8 @@ int main() {
   const auto caught = findMinMax(arr, Size);
   std::cout << "Minimum Value from Array" << std::get<0>(caught) << "\n";
   std::cout << "Maximum Value from Array" << std::get<1>(caught) << "\n";
+
+  const auto caught_p = findMinMax_p(arr, Size);
+  std::cout << "Minimum Value from Array" << std::get<0>(caught_p) << "\n";
+  std::cout << "Maximum Value from Array" << std::get<1>(caught_p) << "\n";
 }
