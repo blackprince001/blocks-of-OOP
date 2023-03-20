@@ -1,14 +1,24 @@
 #include <iostream>
 #include <tuple>
 
-std::tuple<int, int> findMinMax(int arr[], int size) {
+std::pair<int, int> findMinMax_p(int arr[], int size) {
   int *maxValPtr = arr;
   int *minValPtr = arr;
   for (int i = 1; i < size; ++i) {
     if (arr[i] >= *maxValPtr) maxValPtr = &arr[i];
     if (arr[i] <= *minValPtr) minValPtr = &arr[i];
   }
-  return std::tuple<int, int>{*minValPtr, *maxValPtr};
+  return std::pair<int, int>{*minValPtr, *maxValPtr};
+}
+
+std::pair<int, int> findMinMax(int arr[], int size) {
+  int max = arr[0];
+  int min = arr[0];
+  for (int i = 1; i < size; ++i) {
+    if (arr[i] >= max) max = arr[i];
+    if (arr[i] <= min) min = arr[i];
+  }
+  return std::pair<int, int>{min, max};
 }
 
 int main() {
