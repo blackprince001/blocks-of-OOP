@@ -16,7 +16,7 @@ All examples with code and comments highlighted in the directory `./lessons`
 > so it is better to assign null or ZEROS to your integral initialized or objects. `local` and `function arguments` (if not referenced) are stored on the `stack` while `global` and `static variables` are stored on the `heap` even if the static variable is declared in a local scope.
 
 Scope:
->Variables possess a characteristic called the storage class - `storage class is how long a variable persists in memory or it's lifetime`. The most common storage class is automatic. Local variables have the automatic storage class: they exist only while the function in which they are defined is executing. They are also visible only within that function. 
+>Variables possess a characteristic called the storage class - `storage class is how long a variable persists in memory or it's lifetime`. The most common storage class is automatic. Local variables have the automatic storage class: they exist only while the function in which they are defined is executing. They are also visible only within that function.
 
 >Global variables have static storage class: they exist for the life of a program. They are also visible throughout an entire file. This is why it is preferred for you to make your global variables `const`. Static local variables exist for the life of a program but are visible only in their own function.
 
