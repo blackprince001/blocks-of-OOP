@@ -1,7 +1,6 @@
 // rewrite the quiz class template described in the slides.
 #include <iostream>
 #include <string>
-#include <variant>
 #include <vector>
 
 struct QuestionOption {
@@ -34,24 +33,37 @@ class MakeQuiz {
 
  public:
   void add_question(Question &quest) { questions.push_back(quest); }
-  void show_questions() {
-    for (auto &question : questions) {
-      std::cout << question.get_question_statement() << "\n";
+  friend std::ostream &operator<<(std::ostream &out, MakeQuiz quiz) {
+    for (auto &question : quiz.questions) {
+      out << question.get_question_statement() << "\n";
       for (auto option : question.get_options())
-        std::cout << option.get_option() << "\n";
+        out << option.get_option() << "\n";
     }
+    return out;
   }
 };
 
 int main() {
   Question question1("What is the answer for the Question?");
-  question1.create_option("std::string new_option", false);
+  question1.create_option("string", false);
   question1.create_option("23", false);
   question1.create_option("411.2f", false);
 
+  Question question2("What is the answer for the Question?");
+  question2.create_option("string", false);
+  question2.create_option("23", false);
+  question2.create_option("411.2f", false);
+
+  Question question3("What is the answer for the Question?");
+  question3.create_option("string", false);
+  question3.create_option("23", false);
+  question3.create_option("411.2f", false);
+
   MakeQuiz quiz1;
   quiz1.add_question(question1);
-  quiz1.show_questions();
+  quiz1.add_question(question2);
+  quiz1.add_question(question3);
+  std::cout << quiz1;
 
   return 0;
 }

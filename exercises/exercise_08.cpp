@@ -4,12 +4,12 @@
 // of that class.
 
 class Great {
-   private:
-    float tip;
-    float sink;
-    friend void set_values();
+ private:
+  float tip;
+  float sink;
+  friend void set_values();
 
-   public:
+ public:
 };
 
 void Great::set_values() { sink += 2; }
