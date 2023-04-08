@@ -11,7 +11,7 @@ int main() {
 
   if (height <= 0) std::cout << "Height cannot be negative or zero\n";
 
-  float bmi = weight / (height / 100.0);
+  float bmi = weight / ((height / 100.0) * (height / 100.0));
   std::cout << "Your BMI is " << bmi << '\n';
 
   if (bmi < 18.5) std::cout << "You are underweight\n";

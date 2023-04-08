@@ -2,10 +2,10 @@
 #include <iostream>
 #include <vector>
 
-template <typename T, size_t Size>
-struct array {
-  T arr[Size];
-};
+// template <typename T, size_t Size>
+// struct array {
+//   T arr[Size];
+// };
 
 unsigned int sum_up_to(int nth) {
   unsigned int sum = 0;
@@ -27,7 +27,7 @@ int fib(int nth) {
 }
 
 // array<int, 6> &populate_fib(int nth) { array for (int i = 0; i < nth; ++i) }
-
+// You can add fibonacci numbers into a vector using this function
 std::vector<int> populate_fib(int nth) {
   std::vector<int> sum_list;
   for (int i = 0; i <= nth; ++i) {

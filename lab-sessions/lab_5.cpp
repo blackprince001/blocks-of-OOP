@@ -37,12 +37,13 @@ class YoutubeChannel {
   void publishVideo(string VideoTitle) {
     publishedVideoTitles.push_back(VideoTitle);
   }
-  void getInfo() {
-    std::cout << "This channel is owned by: " << getOwnerName() << "\n";
-    std::cout << "Channel Name: " << getChannelName() << "\n";
-    std::cout << "Number of Subscribers: " << getSubscriberCount() << "\n";
-    std::cout << "List of Videos Published!\n";
-    for (auto video : publishedVideoTitles) std::cout << "-" << video << "\n";
+  friend std::ostream& operator<<(std::ostream& out, YoutubeChannel& channel) {
+    out << "This channel is owned by: " << channel.getOwnerName() << "\n";
+    out << "Channel Name: " << channel.getChannelName() << "\n";
+    out << "Number of Subscribers: " << channel.getSubscriberCount() << "\n";
+    out << "List of Videos Published!\n";
+    for (auto video : channel.publishedVideoTitles) out << "-" << video << "\n";
+    return out;
   }
 };
 
@@ -50,11 +51,11 @@ void test_YoutubeChannelClass() {
   User usr1("Theresa", "1241223");
   YoutubeChannel ytChannel("Theresa CPP", usr1);
 
-  ytChannel.getInfo();
+  std::cout << ytChannel;
   ytChannel.publishVideo("Learning how to write Classes with CPP");
   for (int i = 0; i < 20; ++i) ytChannel.subscribe();
 
-  ytChannel.getInfo();
+  std::cout << ytChannel;
 }
 
 int main() {

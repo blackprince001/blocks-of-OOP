@@ -1,6 +1,8 @@
 #include <iostream>
 #include <tuple>
 
+// return the pair of minimum and maximum values from an array
+// using iterative pointers
 std::pair<int, int> findMinMax_p(int arr[], int size) {
   int *maxValPtr = arr;
   int *minValPtr = arr;
@@ -11,6 +13,7 @@ std::pair<int, int> findMinMax_p(int arr[], int size) {
   return std::pair<int, int>{*minValPtr, *maxValPtr};
 }
 
+// return the pair of minimum and maximum values from an array
 std::pair<int, int> findMinMax(int arr[], int size) {
   int max = arr[0];
   int min = arr[0];
@@ -26,10 +29,10 @@ int main() {
   int arr[Size] = {-1, 2, 3, 5, 4};
 
   const auto caught = findMinMax(arr, Size);
-  std::cout << "Minimum Value from Array" << std::get<0>(caught) << "\n";
-  std::cout << "Maximum Value from Array" << std::get<1>(caught) << "\n";
+  std::cout << "Minimum Value from Array " << std::get<0>(caught) << "\n";
+  std::cout << "Maximum Value from Array " << std::get<1>(caught) << "\n";
 
   const auto caught_p = findMinMax_p(arr, Size);
-  std::cout << "Minimum Value from Array" << std::get<0>(caught_p) << "\n";
-  std::cout << "Maximum Value from Array" << std::get<1>(caught_p) << "\n";
+  std::cout << "p: Minimum Value from Array " << std::get<0>(caught_p) << "\n";
+  std::cout << "p: Maximum Value from Array " << std::get<1>(caught_p) << "\n";
 }
