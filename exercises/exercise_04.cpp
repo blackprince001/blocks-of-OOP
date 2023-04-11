@@ -11,7 +11,7 @@ class NormalPoint {
   float y;
 };
 
-class TypePoint {
+class TypedPoint {
  public:
   typedef float Coordinate;
   Coordinate x;
@@ -19,14 +19,14 @@ class TypePoint {
 };
 
 void accessing_type_members() {
-  TypePoint orthoPoint;
+  TypedPoint orthoPoint;
   // we can reuse a type member defined in a class by using the scope
   // resolution when the access specifier for that type member is public or
   // protected.
 
   // Note type member can be anything, from a struct to a generic data type
-  TypePoint::Coordinate someX = orthoPoint.x;
-  TypePoint::Coordinate someY = orthoPoint.y;
+  TypedPoint::Coordinate someX = orthoPoint.x;
+  TypedPoint::Coordinate someY = orthoPoint.y;
 }
 
 int main() {}
