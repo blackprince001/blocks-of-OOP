@@ -1,0 +1,1 @@
+add_executable(final-exams finals.cpp)
