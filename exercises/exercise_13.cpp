@@ -1,10 +1,10 @@
 // Design using UML an application that lets users send and receive messages
 // from other users of the same application
-#include <bits/types/time_t.h>
-#include <time.h>
+#include <ctime>
 
 #include <iostream>
 #include <ostream>
+#include <utility>
 #include <vector>
 
 // Explanation of the UML Diagram:
@@ -32,8 +32,8 @@
 class User {
  public:
   User(std::string name, std::string passwd)
-      : name(name), password(passwd), contact_list({}) {}
-  std::string get_name() const { return name; }
+      : name(std::move(name)), password(std::move(std::move(passwd))), contact_list({}) {}
+  [[nodiscard]] std::string get_name() const { return name; }
 
  private:
   std::string name;
@@ -44,10 +44,10 @@ class User {
 class Message {
  public:
   Message(User host, User receiver, std::string message)
-      : sender(host),
-        receiver(receiver),
-        message(message),
-        timestamp(time(NULL)) {}
+      : sender(std::move(host)),
+        receiver(std::move(receiver)),
+        message(std::move(message)),
+        timestamp(time(nullptr)) {}
 
   friend std::ostream& operator<<(std::ostream& out, Message& current_message) {
     out << "From: " << current_message.sender.get_name();
@@ -67,10 +67,10 @@ class Message {
 class Chat {
  public:
   Chat() : conversation_list({}) {}
-  void auto_add(const Message messageSent) {
+  void auto_add(const Message& messageSent) {
     conversation_list.push_back(messageSent);
   }
-  friend std::ostream& operator<<(std::ostream& out, Chat chatbox) {
+  friend std::ostream& operator<<(std::ostream& out, const Chat& chatbox) {
     for (auto conversation : chatbox.conversation_list) {
       out << conversation << "\n\n";
     }

@@ -17,17 +17,17 @@ class CPolygon {
   }
 
  protected:
-  float width;
-  float height;
+  float width{};
+  float height{};
 };
 
 // defining the abstract CRectangle Derived Class
 class CRectangle : public CPolygon {
  public:
-  inline float area() {
+  inline float area() override {
     return (height * width);
   }  // define area function for Rectangle
-  virtual void printArea() {
+  void printArea() override {
     cout << "Area of Rectangle is : " << this->area() << " units squared.\n";
   }
 };
@@ -35,10 +35,10 @@ class CRectangle : public CPolygon {
 // defining the abstract CTriangle Derived class
 class CTriangle : public CPolygon {
  public:
-  inline float area() {
-    return 0.5 * (height * width);
+  inline float area() override {
+    return 0.5f * (height * width);
   }  // define area function for Triangle
-  virtual void printArea() {
+  void printArea() override {
     cout << "Area of Triangle is : " << this->area() << "  units squared.\n";
   }
 };

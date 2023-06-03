@@ -14,7 +14,7 @@ std::pair<int, int> findMinMax_p(int arr[], int size) {
 }
 
 // return the pair of minimum and maximum values from an array
-std::pair<int, int> findMinMax(int arr[], int size) {
+std::pair<int, int> findMinMax(const int arr[], int size) {
   int max = arr[0];
   int min = arr[0];
   for (int i = 1; i < size; ++i) {
@@ -27,7 +27,6 @@ std::pair<int, int> findMinMax(int arr[], int size) {
 int main() {
   const int Size = 5;
   int arr[Size] = {-1, 2, 3, 5, 4};
-
   const auto caught = findMinMax(arr, Size);
   std::cout << "Minimum Value from Array " << std::get<0>(caught) << "\n";
   std::cout << "Maximum Value from Array " << std::get<1>(caught) << "\n";
