@@ -11,10 +11,8 @@ class CPolygon {
     width = w;
     height = h;
   }
-  virtual inline float area() { return (height * width); };
-  virtual void printArea() {
-    cout << "Area of object is : " << this->area() << " units squared.\n";
-  }
+  virtual inline float area() = 0;
+  virtual void printArea() = 0;
 
  protected:
   float width{};
@@ -116,26 +114,46 @@ int main() {
     cin >> response;
 
     if (response == 1) {
+      float width = 0, height = 0;
+      cout << "Enter the value for width: ";
+      cin >> width;
+
+      cout << "\nEnter the value for height: ";
+      cin >> height;
       // Create a Rectangle object
       CRectangle rect_ob = *new CRectangle;
       // set the values of `w` and `h` to the random valus generated
-      rect_ob.setValues(random, random * 2);
+      rect_ob.setValues(width, height);
       // add new object to the CPolygon Array by index;
       PolygonContainer[n] = &rect_ob;
+
     } else if (response == 2) {
+      float base = 0, height = 0;
+      cout << "Enter the value for base: ";
+      cin >> base;
+
+      cout << "\nEnter the value for height: ";
+      cin >> height;
+
       // Create a Triangle object
       CTriangle tri_ob = *new CTriangle;
       // set the values of `w` and `h` to the random valus generated
-      tri_ob.setValues(random, random * 3);
+      tri_ob.setValues(base, height);
       // add new object to the CPolygon Array by index;
       PolygonContainer[n] = &tri_ob;
+
     } else if (response == 3) {
+      float length = 0;
+      cout << "Enter the value for length: ";
+      cin >> length;
+
       // Create Square object
       CSquare sq_ob = *new CSquare;
       // set the values of `w` and `h` to the random valus generated
-      sq_ob.setValues(random, random);
+      sq_ob.setValues(length, length);
       // add new object to the CPolygon Array by index;
       PolygonContainer[n] = &sq_ob;
+
     } else {
       cout << "Not a valid input, try again!\n";
     }
