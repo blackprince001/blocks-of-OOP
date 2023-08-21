@@ -6,7 +6,7 @@ using std::cout;
 
 // defining the abstract CPolygon Parent class
 class CPolygon {
- public:
+public:
   void setValues(float w, float h) {
     width = w;
     height = h;
@@ -14,17 +14,17 @@ class CPolygon {
   virtual inline float area() = 0;
   virtual void printArea() = 0;
 
- protected:
+protected:
   float width{};
   float height{};
 };
 
 // defining the abstract CRectangle Derived Class
 class CRectangle : public CPolygon {
- public:
+public:
   inline float area() override {
     return (height * width);
-  }  // define area function for Rectangle
+  } // define area function for Rectangle
   void printArea() override {
     cout << "Area of Rectangle is : " << this->area() << " units squared.\n";
   }
@@ -32,17 +32,17 @@ class CRectangle : public CPolygon {
 
 // defining the abstract CTriangle Derived class
 class CTriangle : public CPolygon {
- public:
+public:
   inline float area() override {
     return 0.5f * (height * width);
-  }  // define area function for Triangle
+  } // define area function for Triangle
   void printArea() override {
     cout << "Area of Triangle is : " << this->area() << "  units squared.\n";
   }
 };
 
 class CSquare : public CPolygon {
- public:
+public:
   float area() {
     // define the area funtion of the Square class
     // Squares must have equal lengths hence function will return -1 if the
@@ -82,6 +82,12 @@ void testTriangleClass() {
   newtri.printArea();
 }
 
+enum PolygonType {
+  Rectangle,
+  Triangle,
+  Square,
+};
+
 int main() {
   // testing the derived classes of `CPolygon` with arbitrary values
   testRectClass();
@@ -113,7 +119,7 @@ int main() {
     cout << "1. Rectangle\n2. Triangle\n3. Square\n\n->";
     cin >> response;
 
-    if (response == 1) {
+    if (response == PolygonType::Rectangle + 1) {
       float width = 0, height = 0;
       cout << "Enter the value for width: ";
       cin >> width;
@@ -127,7 +133,7 @@ int main() {
       // add new object to the CPolygon Array by index;
       PolygonContainer[n] = &rect_ob;
 
-    } else if (response == 2) {
+    } else if (response == PolygonType::Triangle + 1) {
       float base = 0, height = 0;
       cout << "Enter the value for base: ";
       cin >> base;
@@ -142,7 +148,7 @@ int main() {
       // add new object to the CPolygon Array by index;
       PolygonContainer[n] = &tri_ob;
 
-    } else if (response == 3) {
+    } else if (response == PolygonType::Square + 1) {
       float length = 0;
       cout << "Enter the value for length: ";
       cin >> length;
